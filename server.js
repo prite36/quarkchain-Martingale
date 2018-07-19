@@ -1,25 +1,30 @@
 const Nightmare = require("nightmare")
 const nightmare = Nightmare({ show: true })
 const wallet = require("./wallet.js")
-const betAmount ='0.05'
+const betAmount ='0.01'
 
 nightmare
     .goto('https://testnet.quarkchain.io/app/simple-game')
     .insert('#pk_input', wallet)
     .wait(1000)
     .click('.btn-primary')
-    //   .evaluate(() => {
-    //     return document.querySelector(".simple-game-status").innerText
-    //   })
-    //   .then(text => {
-    //       console.log(text);  
-    //   })
     .wait("#bet_amount") 
     .evaluate(() =>{
         document.querySelector('#bet_amount').value = ''
     })
     .insert('#bet_amount', betAmount)
-    //   .click('.btn.btn-primary.btn-sm.collapsed')
+    .wait(1000)
+    .click(':nth-child(1) > .btn-primary')
+    .wait(1500)
+    .click('.btn-danger')
+    .evaluate(() => {
+        let status = '1'
+        setInterval(() => {
+            status = document.querySelector(".simple-game-status").innerText
+            console.log(status)
+        }, 1000)
+        
+    })
     .catch(error => {
         console.error('Search failed:', error)
     })

@@ -1,0 +1,14 @@
+{
+  "name": "tqkc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nightmare": "^3.0.1"
+  }
+}
